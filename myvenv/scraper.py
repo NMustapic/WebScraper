@@ -10,14 +10,20 @@ soup = BeautifulSoup(html, features="lxml")
 
 f = open('index.html', 'wb')
 f.write(soup.encode("utf-8"))
-f.close
+f.close #zapisivamo cjelokupni HTML kod stranice u .html datoteku
 
-mydivs = soup.find_all("a", {"class": "vijesti-text-hover"})
+#mydivs = soup.find_all("a", {"class": "vijesti-text-hover"})
+#print(mydivs) #ispisiva html kod najvaznijih vijesti
 
-print(mydivs) #ispisiva html kod najvaznijih vijesti
-
-'''for link in soup.find_all('a', href=True):
-    print(link['title']+ " " +link['href'])''' #kod za traženje linkova u sveukupnom HTML kodu
+niz=[]
+for link in soup.find_all('a', href=True):
+    niz.append(link["href"])
+    
+for element in niz:
+    if element[0:4]=="http":
+        print(element) #svi elementi niza su linkovi sa stranice
+        
+#print(niz)
 
 
 
