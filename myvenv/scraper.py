@@ -15,15 +15,22 @@ f.close #zapisivamo cjelokupni HTML kod stranice u .html datoteku
 #mydivs = soup.find_all("a", {"class": "vijesti-text-hover"})
 #print(mydivs) #ispisiva html kod najvaznijih vijesti
 
-niz=[]
+nizlinkova=[]
+niznaslova=[]
 for link in soup.find_all('a', href=True):
-    niz.append(link["href"])
+    title = link.get_text().lstrip()
+    niznaslova.append(title)
+    nizlinkova.append(link["href"])
     
-for element in niz:
+br=0
+for element in nizlinkova:
     if element[0:4]=="http":
+        print("------------------------------------------")
+        print(niznaslova[br])
         print(element) #svi elementi niza su linkovi sa stranice
+    br+=1
         
-#print(niz)
+
 
 
 
